@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram-like Post with Music, Share, and Ads</title>
+  <style>
+    /* Internal CSS */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    .ad {
+      width: 100%;
+      max-width: 800px;
+      padding: 10px;
+      text-align: center;
+      background-color: #ccc;
+      margin: 10px 0;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .post {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      aspect-ratio: 1/1;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #fff;
+      margin-bottom: 20px;
+    }
+
+    #post-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .share-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      background-color: #3897f0;
+      color: white;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .share-button:active {
+      background-color: #2870c7;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Ad -->
+  <div class="ad">
+    <!-- Replace with your ad code -->
+    Top Ad Banner
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="post">
+      <img src="b.jpg" alt="Post Image" id="post-image">
+    </div>
+    <button class="share-button" id="share-button">Share with Friends</button>
+  </div>
+
+  <!-- Bottom Ad -->
+  <div class="ad">
+    <!-- Replace with your ad code -->
+    Bottom Ad Banner
+  </div>
+
+  <audio id="music" src="a.mp3"></audio>
+
+  <script>
+    // Internal JavaScript
+    const postImage = document.getElementById('post-image');
+    const music = document.getElementById('music');
+    const shareButton = document.getElementById('share-button');
+
+    postImage.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    });
+
+    shareButton.addEventListener('click', async () => {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: 'Check out this post!',
+            text: 'Have a look at this amazing post I found!',
+            url: window.location.href,
+          });
+        } catch (error) {
+          console.error('Error sharing:', error);
+        }
+      } else {
+        alert('Your browser does not support the Web Share API.');
+      }
+    });
+  </script>
+</body>
+</html>
